@@ -25,6 +25,8 @@ os.chdir(root_folder)
 seq_name = "car-shadow"
 gpu_id = 0
 train_model = True
+
+# Resolution switch
 Resolution = "480p"
 
 result_path = os.path.join('DAVIS', 'Results', 'Segmentations', Resolution, 'OSVOS', seq_name)
