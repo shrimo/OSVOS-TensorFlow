@@ -25,7 +25,9 @@ os.chdir(root_folder)
 seq_name = "car-shadow"
 gpu_id = 0
 train_model = True
-result_path = os.path.join('DAVIS', 'Results', 'Segmentations', '480p', 'OSVOS', seq_name)
+Resolution = "480p"
+
+result_path = os.path.join('DAVIS', 'Results', 'Segmentations', Resolution, 'OSVOS', seq_name)
 
 # Train parameters
 parent_path = os.path.join('models', 'OSVOS_parent', 'OSVOS_parent.ckpt-50000')
@@ -33,11 +35,11 @@ logs_path = os.path.join('models', seq_name)
 max_training_iters = 500
 
 # Define Dataset
-test_frames = sorted(os.listdir(os.path.join('DAVIS', 'JPEGImages', '480p', seq_name)))
-test_imgs = [os.path.join('DAVIS', 'JPEGImages', '480p', seq_name, frame) for frame in test_frames]
+test_frames = sorted(os.listdir(os.path.join('DAVIS', 'JPEGImages', Resolution, seq_name)))
+test_imgs = [os.path.join('DAVIS', 'JPEGImages', Resolution, seq_name, frame) for frame in test_frames]
 if train_model:
-    train_imgs = [os.path.join('DAVIS', 'JPEGImages', '480p', seq_name, '00000.jpg')+' '+
-                  os.path.join('DAVIS', 'Annotations', '480p', seq_name, '00000.png')]
+    train_imgs = [os.path.join('DAVIS', 'JPEGImages', Resolution, seq_name, '00000.jpg')+' '+
+                  os.path.join('DAVIS', 'Annotations', Resolution, seq_name, '00000.png')]
     dataset = Dataset(train_imgs, test_imgs, './', data_aug=True)
 else:
     dataset = Dataset(None, test_imgs, './')
